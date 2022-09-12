@@ -17,4 +17,4 @@ If you use our framework for any academic work, please cite the original [paper]
 > bibtex entry coming soon!
 
 ## Acknowledgment
-This work has partially been funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy, EXC-2070 -- 390732324 -- PhenoRob, and by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under STA~1051/5-1 within the FOR 5351~(AID4Crops).
+This work has partially been funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy, EXC-2070 -- 390732324 -- PhenoRob, and by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under STA 1051/5-1 within the FOR 5351(AID4Crops).
