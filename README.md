@@ -43,7 +43,8 @@ Check out the [paper]() for more quantitative and qualitative results! :grin:
 
 
 ## Code
-Coming soon!
+After installing the requirements specified in the file `requirements.yml` (for example in form of a conda environment), for training your model you only need to `python train_hapt.py` and specify your favourite settings in `config/config.yaml`.
+
 
 ## Citation
 If you use our framework for any academic work, please cite the original [paper]()!
