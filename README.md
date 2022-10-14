@@ -36,6 +36,11 @@ Quantitative results of our method against baselines:
 
 <br/>
 
+Qualitative results of our method against baselines on the GrowliFlower dataset, where red circles indicates segmentation errors:
+![results](pics/growli.png)
+
+Check out the [paper]() for more quantitative and qualitative results! :grin:
+
 
 ## Code
 Coming soon!
