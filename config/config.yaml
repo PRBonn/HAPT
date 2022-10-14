@@ -1,0 +1,27 @@
+experiment:
+    id: giammi_fa_immagini
+    seed: 1324
+
+##Data
+data:
+    ft-path: "/export/datasets/hapt" # path to dataset for fine tuning
+
+##Training
+train:
+    mode: 'train' 
+    n_gpus: 1
+    workers: 0
+    max_epoch: 500
+    lr: [0.0005, 0.0005, 0.0008, 0.0008]
+    batch_size: 24
+    overfit: False
+    validation_warmup: 10
+
+##Network
+model:
+    dropout: 0.15
+    initialization: "xavier" # one among None, he, xavier
+
+tasks:
+    semantic_segmentation:
+        n_classes: 2
