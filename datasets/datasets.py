@@ -33,13 +33,10 @@ class StatDataModule(LightningDataModule):
         self.mode = self.cfg['train']['mode']
 
         if stage == 'fit' or stage is None:
-            if self.mode == 'pt':
-                self.data_train = SugarBeets(self.cfg['data']['pt-path'], self.mode)
-            else: 
-                self.data_train = SugarBeets(self.cfg['data']['ft-path'], 'train', overfit=self.cfg['train']['overfit'])
-                self.data_val = SugarBeets(self.cfg['data']['ft-path'], 'val', overfit=self.cfg['train']['overfit'])
-                # self.data_train = GrowliFlower(self.cfg['data']['ft-path'], 'Train', overfit=self.cfg['train']['overfit'])
-                # self.data_val = GrowliFlower(self.cfg['data']['ft-path'], 'Val', overfit=self.cfg['train']['overfit'])
+            self.data_train = SugarBeets(self.cfg['data']['ft-path'], 'train', overfit=self.cfg['train']['overfit'])
+            self.data_val = SugarBeets(self.cfg['data']['ft-path'], 'val', overfit=self.cfg['train']['overfit'])
+            # self.data_train = GrowliFlower(self.cfg['data']['ft-path'], 'Train', overfit=self.cfg['train']['overfit'])
+            # self.data_val = GrowliFlower(self.cfg['data']['ft-path'], 'Val', overfit=self.cfg['train']['overfit'])
         return
 
     def train_dataloader(self):
@@ -83,24 +80,17 @@ class SugarBeets(Dataset):
         else:
             self.datapath += '/images/' + mode
 
-        if self.mode=='pt' : # if mode is pre-training  
-            with open(self.datapath + "/split.yaml") as f:
-                self.all_data = yaml.safe_load(f)
- 
-            self.all_imgs = self.all_data['pre-training']
-            self.transform = utils.Transform()
-        else: # if mode is training 
-            self.all_imgs = [os.path.join(self.datapath,x) for x in os.listdir(self.datapath) if ".png" in x]
-            self.all_imgs.sort()
+        self.all_imgs = [os.path.join(self.datapath,x) for x in os.listdir(self.datapath) if ".png" in x]
+        self.all_imgs.sort()
 
-            global_annotations_path = os.path.join(self.datapath.replace('images','annos'), 'global')
-            parts_annotations_path = os.path.join(self.datapath.replace('images','annos'), 'parts')
-            self.global_instance_list =[os.path.join(global_annotations_path,x) for x in os.listdir(global_annotations_path) if ".semantic" in x]
-            self.parts_instance_list =[os.path.join(parts_annotations_path,x) for x in os.listdir(parts_annotations_path) if ".semantic" in x]
-            self.global_instance_list.sort()
-            self.parts_instance_list.sort()
+        global_annotations_path = os.path.join(self.datapath.replace('images','annos'), 'global')
+        parts_annotations_path = os.path.join(self.datapath.replace('images','annos'), 'parts')
+        self.global_instance_list =[os.path.join(global_annotations_path,x) for x in os.listdir(global_annotations_path) if ".semantic" in x]
+        self.parts_instance_list =[os.path.join(parts_annotations_path,x) for x in os.listdir(parts_annotations_path) if ".semantic" in x]
+        self.global_instance_list.sort()
+        self.parts_instance_list.sort()
             
-            self.transform = utils.ValTransform() 
+        self.transform = utils.ValTransform() 
         self.len = len(self.all_imgs)
       
 
